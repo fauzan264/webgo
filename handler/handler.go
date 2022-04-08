@@ -2,7 +2,10 @@ package handler
 
 import (
 	"fmt"
+	"html/template"
+	"log"
 	"net/http"
+	"path"
 	"strconv"
 )
 
@@ -12,7 +15,21 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Write([]byte("Home page"))
+	// w.Write([]byte("Home page"))
+	temp, err := template.ParseFiles(path.Join("views", "index.html"))
+
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Error: page not found", http.StatusInternalServerError)
+		return
+	}
+
+	err = temp.Execute(w, nil)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Error: page not found", http.StatusInternalServerError)
+		return
+	}
 }
 
 func HelloHandler(w http.ResponseWriter, r *http.Request) {
