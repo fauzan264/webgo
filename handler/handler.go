@@ -9,13 +9,16 @@ import (
 	"strconv"
 )
 
+// layout template
+var viewLayout string = path.Join("views", "layout.html")
+
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
 	}
 
-	temp, err := template.ParseFiles(path.Join("views", "index.html"))
+	temp, err := template.ParseFiles(path.Join("views", "index.html"), viewLayout)
 
 	if err != nil {
 		log.Println(err)
