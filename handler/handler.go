@@ -15,7 +15,6 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// w.Write([]byte("Home page"))
 	temp, err := template.ParseFiles(path.Join("views", "index.html"))
 
 	if err != nil {
@@ -24,7 +23,12 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = temp.Execute(w, nil)
+	data := map[string]interface{}{
+		"title":   "Learn golang web",
+		"content": "Home page",
+	}
+
+	err = temp.Execute(w, data)
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Error: page not found", http.StatusInternalServerError)
