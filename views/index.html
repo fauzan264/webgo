@@ -1,8 +1,67 @@
 {{ template "layout" .}}
 {{ define "content" }}
+    <header class="py-3" style="background: url(https://source.unsplash.com/random/300×300/?clothing) no-repeat center; background-size: cover;">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-6">
+                    <div class="text-center text-white">
+                        <!-- Page heading-->
+                        <h1 class="mb-5 text-muted">Generate more leads with a professional landing page!</h1>
+                        <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
+                            <!-- Email address input-->
+                            <div class="row">
+                                <div class="col">
+                                    <input class="form-control form-control-lg" id="emailAddress" type="text" placeholder="Cari..." data-sb-validations="required,email" data-sb-can-submit="no">
+                                    <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
+                                </div>
+                                <div class="col-auto"><button class="btn btn-secondary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>    
     <main>
-        <div class="container">
+        <div class="container my-3">
             <h5>{{ .content }}</h5>
+            <div class="row">
+                <div class="col-4">
+                    <div class="card my-3">
+                        <img class="card-img-top" src="https://source.unsplash.com/random/300×300/?clothes" width="250" height="250" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Lorem</h5>
+                            <p class="card-text">IDR 20000</p>
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card my-3">
+                        <img class="card-img-top" src="https://source.unsplash.com/random/300×300/?clothes" width="250" height="250" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Lorem</h5>
+                            <p class="card-text">IDR 20000</p>
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card my-3">
+                        <img class="card-img-top" src="https://source.unsplash.com/random/300×300/?clothes" width="250" height="250" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Lorem</h5>
+                            <p class="card-text">IDR 20000</p>
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
+    <script>
+    </script>
 {{ end }}
