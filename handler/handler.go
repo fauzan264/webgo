@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 	"path"
-	"strconv"
+	"webgo/entity"
 )
 
 // layout template
@@ -43,14 +43,14 @@ func HelloHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func ProductHandler(w http.ResponseWriter, r *http.Request) {
-	id := r.URL.Query().Get("id")
+	// id := r.URL.Query().Get("id")
 
-	dataId, err := strconv.Atoi(id)
+	// dataId, err := strconv.Atoi(id)
 
-	if err != nil || dataId < 1 {
-		http.NotFound(w, r)
-		return
-	}
+	// if err != nil || dataId < 1 {
+	// 	http.NotFound(w, r)
+	// 	return
+	// }
 
 	temp, err := template.ParseFiles(path.Join("views", "product.html"), viewLayout)
 
@@ -61,9 +61,20 @@ func ProductHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// fmt.Fprintf(w, "Product page : %d", dataId)
+	dataProduct := []entity.Product{
+		{Id: 1, Name: "Kaos Polos Hitam", Price: 40000, Stock: 20},
+		{Id: 2, Name: "Kaos Polos Putih", Price: 40000, Stock: 10},
+		{Id: 3, Name: "Kaos Polos Biru", Price: 40000, Stock: 25},
+		{Id: 4, Name: "Baju Polo", Price: 90000, Stock: 5},
+		{Id: 5, Name: "Celana Chino", Price: 100000, Stock: 1},
+		{Id: 6, Name: "Hoodie", Price: 140000, Stock: 29},
+		{Id: 7, Name: "Celana Jeans", Price: 240000, Stock: 22},
+		{Id: 8, Name: "Kaos Polos Merah", Price: 40000, Stock: 9},
+		{Id: 9, Name: "Kaos Polos Cream", Price: 40000, Stock: 18},
+	}
 	data := map[string]interface{}{
-		"title": "Product",
-		"content" : dataId,
+		"title":   "Product",
+		"content": dataProduct,
 	}
 	err = temp.Execute(w, data)
 	if err != nil {

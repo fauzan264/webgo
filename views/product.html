@@ -4,54 +4,24 @@
         <div class="container my-5">
             <h5>Produk</h5>
             <div class="row">
+                {{ range .content }}
                 <div class="col-4">
                     <div class="card my-3">
                         <img class="card-img-top" src="https://source.unsplash.com/random/300×300/?clothes" width="250" height="250" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title">{{ .content }}</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <h5 class="card-title">{{ .Name }}</h5>
+                            <p class="card-text">IDR {{ .Price }}</p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
+                            {{ if lt .Stock 5 }}
+                                <span class="badge badge-danger">Stok tersedia: {{ .Stock }}</span>
+                            {{ else }}
+                                <span class="badge badge-primary">Stok tersedia: {{ .Stock }}</span>
+                            {{ end }}
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="card my-3">
-                        <img class="card-img-top" src="https://source.unsplash.com/random/300×300/?clothes" width="250" height="250" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ .content }}</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card my-3">
-                        <img class="card-img-top" src="https://source.unsplash.com/random/300×300/?clothes" width="250" height="250" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ .content }}</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card my-3">
-                        <img class="card-img-top" src="https://source.unsplash.com/random/300×300/?clothes" width="250" height="250" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ .content }}</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </div>
-                    </div>
-                </div>
+                {{ end }}
             </div>
         </div>
     </main>
