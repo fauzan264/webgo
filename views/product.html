@@ -11,13 +11,14 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ .Name }}</h5>
                             <p class="card-text">IDR {{ .Price }}</p>
+                            {{ if lt .Stock 5 }}
+                                <span class='badge badge-danger'>{{ .StockStatus }}</span>
+                            {{ else if lt .Stock 10 }}
+                                <span class='badge badge-warning'>{{ .StockStatus }}</span>
+                            {{ end }}
                         </div>
                         <div class="card-footer">
-                            {{ if lt .Stock 5 }}
-                                <span class="badge badge-danger">Stok tersedia: {{ .Stock }}</span>
-                            {{ else }}
-                                <span class="badge badge-primary">Stok tersedia: {{ .Stock }}</span>
-                            {{ end }}
+                            <small class="text-muted">Stok tersedia: {{ .Stock }}</small>
                         </div>
                     </div>
                 </div>
