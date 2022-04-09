@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -27,7 +26,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := map[string]interface{}{
-		"title":   "Learn golang web",
+		"title":   "Home",
 		"content": "Home page",
 	}
 
@@ -53,5 +52,22 @@ func ProductHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "Product page : %d", dataId)
+	temp, err := template.ParseFiles(path.Join("views", "product.html"), viewLayout)
+
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Error: page not found", http.StatusInternalServerError)
+		return
+	}
+
+	// fmt.Fprintf(w, "Product page : %d", dataId)
+	data := map[string]interface{}{
+		"title": "Product",
+		"content" : dataId,
+	}
+	err = temp.Execute(w, data)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Error: page not found", http.StatusInternalServerError)
+	}
 }
