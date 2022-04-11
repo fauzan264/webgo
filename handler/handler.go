@@ -82,3 +82,17 @@ func ProductHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error: page not found", http.StatusInternalServerError)
 	}
 }
+
+// learn http method
+func PostGet(w http.ResponseWriter, r *http.Request) {
+	method := r.Method
+
+	switch method {
+	case "GET":
+		w.Write([]byte("It's a GET"))
+	case "POST":
+		w.Write([]byte("It's a POST"))
+	default:
+		http.Error(w, "Error: method not found", http.StatusBadRequest)
+	}
+}
