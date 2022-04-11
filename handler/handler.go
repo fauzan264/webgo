@@ -93,6 +93,54 @@ func PostGet(w http.ResponseWriter, r *http.Request) {
 	case "POST":
 		w.Write([]byte("It's a POST"))
 	default:
-		http.Error(w, "Error: method not found", http.StatusBadRequest)
+		http.Error(w, "Error: bad request", http.StatusBadRequest)
 	}
+}
+
+func Process(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
+		err := r.ParseForm()
+		if err != nil {
+			log.Println(err)
+			http.Error(w, "Error: The form must be filled", http.StatusInternalServerError)
+			return
+		}
+
+		name := r.Form.Get("name")
+		email := r.Form.Get("email")
+		message := r.Form.Get("message")
+
+		// result data contact
+		dataContact := map[string]string{
+			"Name":    name,
+			"Email":   email,
+			"Message": message,
+		}
+
+		// data
+		data := map[string]interface{}{
+			"title":   "Result form contact",
+			"content": dataContact,
+		}
+
+		// menampilkan html page
+		temp, err := template.ParseFiles(path.Join("views", "result.html"), viewLayout)
+		if err != nil {
+			log.Println(err)
+			http.Error(w, "Error: page not found", http.StatusInternalServerError)
+			return
+		}
+
+		// menampilkan data
+		err = temp.Execute(w, data)
+		if err != nil {
+			log.Println(err)
+			http.Error(w, "Error: internal server error", http.StatusInternalServerError)
+			return
+		}
+		return
+
+	}
+
+	http.Error(w, "Error: bad request", http.StatusBadRequest)
 }

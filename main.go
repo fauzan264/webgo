@@ -14,6 +14,7 @@ func main() {
 	mux.HandleFunc("/hello", handler.HelloHandler)
 	mux.HandleFunc("/product", handler.ProductHandler)
 	mux.HandleFunc("/post-get", handler.PostGet)
+	mux.HandleFunc("/process", handler.Process)
 
 	// assets
 	fileServer := http.FileServer(http.Dir("assets"))
