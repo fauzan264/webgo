@@ -67,8 +67,8 @@
                     <div class="col-md-6 mx-auto">
                         <div class="card">
                             <div class="card-body">
-                            <h5 class="text-center">Contact Us</h5>
-                                <form>
+                                <h5 class="text-center">Contact Us</h5>
+                                <form method="post" action="/process">
                                     <div class="form-group row">
                                         <label for="name" class="col-sm-3 col-form-label">Name</label>
                                         <div class="col-sm-9">
@@ -85,6 +85,11 @@
                                         <label for="message" class="col-sm-3 col-form-label">Message</label>
                                         <div class="col-sm-9">
                                             <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                                         </div>
                                     </div>
                                 </form>
